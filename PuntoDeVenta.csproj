@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F34759E9-BD48-4535-9D2F-E8CE8568C0AB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PuntoDeVenta</RootNamespace>
+    <AssemblyName>PuntoDeVenta</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI">
+      <HintPath>..\..\..\..\Descargas\Guna.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ArticuloController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
+    <Compile Include="Models\Articulo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categorias.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detalle_venta.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Direcciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Email.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modulo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Opcion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Permiso.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Proveedor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rol.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Telefonos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Venta.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ArticuloServices.cs" />
+    <Compile Include="Services\CategoriasServices.cs" />
+    <Compile Include="Services\ProveedoresServices.cs" />
+    <Compile Include="Services\ReporteServices.cs" />
+    <Compile Include="Services\VentasServices.cs" />
+    <Compile Include="ViewModel\ArticuloVM.cs" />
+    <Compile Include="ViewModel\CategoriasVM.cs" />
+    <Compile Include="ViewModel\Consulta.cs" />
+    <Compile Include="ViewModel\Detalle_ventaVM.cs" />
+    <Compile Include="ViewModel\DireccionesVM.cs" />
+    <Compile Include="ViewModel\EmailVM.cs" />
+    <Compile Include="ViewModel\ProveedorVM.cs" />
+    <Compile Include="ViewModel\ReportesVM.cs" />
+    <Compile Include="ViewModel\TelefonosVM.cs" />
+    <Compile Include="ViewModel\VentaVM.cs" />
+    <Compile Include="Views\Inventario\AddCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventario\AddCategoria.Designer.cs">
+      <DependentUpon>AddCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventario\Detalle_Articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventario\Detalle_Articulo.Designer.cs">
+      <DependentUpon>Detalle_Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proveedores\AgregarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Proveedores\AgregarProveedor.Designer.cs">
+      <DependentUpon>AgregarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventario\Añadir_Articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventario\Añadir_Articulo.Designer.cs">
+      <DependentUpon>Añadir_Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Inventario\Editar-Articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventario\Editar-Articulo.Designer.cs">
+      <DependentUpon>Editar-Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proveedores\EditarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Proveedores\EditarProveedor.Designer.cs">
+      <DependentUpon>EditarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventario\Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventario\Inventario.Designer.cs">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proveedores\Proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Proveedores\Proveedores.Designer.cs">
+      <DependentUpon>Proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Recibo_Cambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Recibo_Cambio.Designer.cs">
+      <DependentUpon>Recibo_Cambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistroExito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RegistroExito.Designer.cs">
+      <DependentUpon>RegistroExito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\VentasRealizadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Ventas\VentasRealizadas.Designer.cs">
+      <DependentUpon>VentasRealizadas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Inventario\AddCategoria.resx">
+      <DependentUpon>AddCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventario\Detalle_Articulo.resx">
+      <DependentUpon>Detalle_Articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Recibo_Cambio.resx">
+      <DependentUpon>Recibo_Cambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Proveedores\AgregarProveedor.resx">
+      <DependentUpon>AgregarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventario\Añadir_Articulo.resx">
+      <DependentUpon>Añadir_Articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Views\Inventario\Editar-Articulo.resx">
+      <DependentUpon>Editar-Articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Proveedores\EditarProveedor.resx">
+      <DependentUpon>EditarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventario\Inventario.resx">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Proveedores\Proveedores.resx">
+      <DependentUpon>Proveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RegistroExito.resx">
+      <DependentUpon>RegistroExito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ventas\VentasRealizadas.resx">
+      <DependentUpon>VentasRealizadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+    <None Include="Resources\Mi proyecto.png" />
+    <None Include="Resources\iconic.png" />
+    <None Include="Resources\icono.png" />
+    <None Include="Resources\ventas 2.png" />
+    <None Include="Resources\prov.png" />
+    <None Include="Resources\pro.jpg" />
+    <None Include="Resources\reportes.png" />
+    <None Include="Resources\ventas.png" />
+    <None Include="Resources\proveedor.png" />
+    <None Include="Resources\inventario.png" />
+    <None Include="Resources\Color azul.png" />
+    <None Include="Resources\Color rojo.png" />
+    <None Include="Resources\Color rojo 2.png" />
+    <None Include="Resources\Color.png" />
+    <None Include="Resources\Caja registradora chici.png" />
+    <None Include="Resources\Caja registradora ch.png" />
+    <None Include="Resources\Caja registradora button.png" />
+    <None Include="Resources\Caja registradora circle.png" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Resources\Caja registradora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

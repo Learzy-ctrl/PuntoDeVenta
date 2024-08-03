@@ -1,0 +1,826 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistemaDeVentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="Cod_Barras" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Precio_Compra" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Precio_Venta" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="IdCategorias" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle_venta">
+          <Key>
+            <PropertyRef Name="idDetalle_venta" />
+          </Key>
+          <Property Name="idDetalle_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVenta" Type="int" Nullable="false" />
+          <Property Name="idArticulo" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" />
+          <Property Name="Municipio" Type="varchar" MaxLength="100" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreModulo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Opcion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpcionNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdModulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idrol" Type="int" />
+          <Property Name="Idopcion" Type="int" />
+          <Property Name="permitido" Type="bit" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num_tel" Type="varchar" MaxLength="15" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Idrol" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="VentaCancel" Type="varchar" MaxLength="50" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Articulo_Categorias">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="IdCategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_venta_Articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_venta" Type="Self.Detalle_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle_venta">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_venta_Venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_venta" Type="Self.Detalle_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="Detalle_venta">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direcciones_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Email_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opcion_Modulo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="1" />
+          <End Role="Opcion" Type="Self.Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Opcion">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permiso_Opcion">
+          <End Role="Opcion" Type="Self.Opcion" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="Idopcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permiso_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="Idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telefonos_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaDeVentasModelStoreContainer">
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_venta" EntityType="Self.Detalle_venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opcion" EntityType="Self.Opcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Articulo_Categorias" Association="Self.FK_Articulo_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Proveedor" Association="Self.FK_Articulo_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_venta_Articulo" Association="Self.FK_Detalle_venta_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Detalle_venta" EntitySet="Detalle_venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_venta_Venta" Association="Self.FK_Detalle_venta_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Detalle_venta" EntitySet="Detalle_venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direcciones_Proveedor" Association="Self.FK_Direcciones_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Email_Proveedor" Association="Self.FK_Email_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opcion_Modulo" Association="Self.FK_Opcion_Modulo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Opcion" EntitySet="Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permiso_Opcion" Association="Self.FK_Permiso_Opcion">
+            <End Role="Opcion" EntitySet="Opcion" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permiso_Rol" Association="Self.FK_Permiso_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telefonos_Proveedor" Association="Self.FK_Telefonos_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaDeVentasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cod_Barras" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Precio_Compra" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Precio_Venta" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="IdCategorias" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK_Articulo_Categorias" FromRole="Articulo" ToRole="Categorias" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Articulo_Proveedor" FromRole="Articulo" ToRole="Proveedor" />
+          <NavigationProperty Name="Detalle_venta" Relationship="Self.FK_Detalle_venta_Articulo" FromRole="Articulo" ToRole="Detalle_venta" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_Articulo_Categorias" FromRole="Categorias" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Detalle_venta">
+          <Key>
+            <PropertyRef Name="idDetalle_venta" />
+          </Key>
+          <Property Name="idDetalle_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVenta" Type="Int32" Nullable="false" />
+          <Property Name="idArticulo" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_Detalle_venta_Articulo" FromRole="Detalle_venta" ToRole="Articulo" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Detalle_venta_Venta" FromRole="Detalle_venta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Direcciones_Proveedor" FromRole="Direcciones" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Email_Proveedor" FromRole="Email" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreModulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Opcion" Relationship="Self.FK_Opcion_Modulo" FromRole="Modulo" ToRole="Opcion" />
+        </EntityType>
+        <EntityType Name="Opcion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpcionNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdModulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Modulo" Relationship="Self.FK_Opcion_Modulo" FromRole="Opcion" ToRole="Modulo" />
+          <NavigationProperty Name="Permiso" Relationship="Self.FK_Permiso_Opcion" FromRole="Opcion" ToRole="Permiso" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idrol" Type="Int32" />
+          <Property Name="Idopcion" Type="Int32" />
+          <Property Name="permitido" Type="Boolean" />
+          <NavigationProperty Name="Opcion" Relationship="Self.FK_Permiso_Opcion" FromRole="Permiso" ToRole="Opcion" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Permiso_Rol" FromRole="Permiso" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK_Articulo_Proveedor" FromRole="Proveedor" ToRole="Articulo" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FK_Direcciones_Proveedor" FromRole="Proveedor" ToRole="Direcciones" />
+          <NavigationProperty Name="Email" Relationship="Self.FK_Email_Proveedor" FromRole="Proveedor" ToRole="Email" />
+          <NavigationProperty Name="Telefonos" Relationship="Self.FK_Telefonos_Proveedor" FromRole="Proveedor" ToRole="Telefonos" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Permiso" Relationship="Self.FK_Permiso_Rol" FromRole="Rol" ToRole="Permiso" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_tel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Telefonos_Proveedor" FromRole="Telefonos" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Idrol" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="VentaCancel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Detalle_venta" Relationship="Self.FK_Detalle_venta_Venta" FromRole="Venta" ToRole="Detalle_venta" />
+        </EntityType>
+        <Association Name="FK_Articulo_Categorias">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="IdCategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_venta_Articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="Detalle_venta" Type="Self.Detalle_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle_venta">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_venta_Venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalle_venta" Type="Self.Detalle_venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="Detalle_venta">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direcciones_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Email_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opcion_Modulo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="1" />
+          <End Role="Opcion" Type="Self.Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Opcion">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permiso_Opcion">
+          <End Role="Opcion" Type="Self.Opcion" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="Idopcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permiso_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="Idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telefonos_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaDeVentasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Detalle_venta" EntityType="Self.Detalle_venta" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+          <EntitySet Name="Email" EntityType="Self.Email" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" />
+          <EntitySet Name="Opcion" EntityType="Self.Opcion" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <AssociationSet Name="FK_Articulo_Categorias" Association="Self.FK_Articulo_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Proveedor" Association="Self.FK_Articulo_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_venta_Articulo" Association="Self.FK_Detalle_venta_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Detalle_venta" EntitySet="Detalle_venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_venta_Venta" Association="Self.FK_Detalle_venta_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Detalle_venta" EntitySet="Detalle_venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direcciones_Proveedor" Association="Self.FK_Direcciones_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Email_Proveedor" Association="Self.FK_Email_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opcion_Modulo" Association="Self.FK_Opcion_Modulo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Opcion" EntitySet="Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permiso_Opcion" Association="Self.FK_Permiso_Opcion">
+            <End Role="Opcion" EntitySet="Opcion" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permiso_Rol" Association="Self.FK_Permiso_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telefonos_Proveedor" Association="Self.FK_Telefonos_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaDeVentasModelStoreContainer" CdmEntityContainer="SistemaDeVentasEntities">
+          <EntitySetMapping Name="Articulo">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Articulo">
+              <MappingFragment StoreEntitySet="Articulo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Cod_Barras" ColumnName="Cod_Barras" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Precio_Compra" ColumnName="Precio_Compra" />
+                <ScalarProperty Name="Precio_Venta" ColumnName="Precio_Venta" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategorias" ColumnName="IdCategorias" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_venta">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Detalle_venta">
+              <MappingFragment StoreEntitySet="Detalle_venta">
+                <ScalarProperty Name="idDetalle_venta" ColumnName="idDetalle_venta" />
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direcciones">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Direcciones">
+              <MappingFragment StoreEntitySet="Direcciones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Email">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email1" ColumnName="email" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modulo">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Modulo">
+              <MappingFragment StoreEntitySet="Modulo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreModulo" ColumnName="NombreModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opcion">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Opcion">
+              <MappingFragment StoreEntitySet="Opcion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OpcionNombre" ColumnName="OpcionNombre" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Idrol" ColumnName="Idrol" />
+                <ScalarProperty Name="Idopcion" ColumnName="Idopcion" />
+                <ScalarProperty Name="permitido" ColumnName="permitido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telefonos">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Telefonos">
+              <MappingFragment StoreEntitySet="Telefonos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Num_tel" ColumnName="Num_tel" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Idrol" ColumnName="Idrol" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="SistemaDeVentasModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="VentaCancel" ColumnName="VentaCancel" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

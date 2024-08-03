@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7acb8aca3d5d466293a94b8b1a256483" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Articulo" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Categorias" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Detalle_venta" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Direcciones" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Email" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Modulo" Width="1.5" PointX="5.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Opcion" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Permiso" Width="1.5" PointX="10" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Proveedor" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Rol" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Telefonos" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Usuario" Width="1.5" PointX="10" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaDeVentasModel.Venta" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Articulo_Categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Articulo_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Detalle_venta_Articulo" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Detalle_venta_Venta" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Direcciones_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Email_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Opcion_Modulo" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Permiso_Opcion" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Permiso_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Telefonos_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaDeVentasModel.FK_Usuario_Rol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
